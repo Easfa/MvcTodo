@@ -54,5 +54,10 @@ namespace MvcTodo.Controllers
             _service.SetDone(id);
             return RedirectToAction("Index");
         }
+
+        public IActionResult ShowAll() 
+        {
+            return View(_service.GetAllTodos());
+        }
     }
 }

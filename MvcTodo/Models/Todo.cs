@@ -20,5 +20,7 @@ namespace MvcTodo.Models
         [NotMapped]
         public string PrioratyText { get { if (Priority == 1) return "Relax"; else if (Priority == 2) return "Secondary"; return "Immediate"; }}
 
+        [NotMapped]
+        public string CompleteText { get { if (IsComplete) return "Cheers!";  return "Not Coplete Yet!!"; } }
     }
 }
