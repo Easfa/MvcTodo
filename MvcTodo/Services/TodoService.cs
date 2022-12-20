@@ -1,4 +1,5 @@
-﻿using MvcTodo.Data;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using MvcTodo.Data;
 using MvcTodo.Models;
 
 namespace MvcTodo.Services
@@ -28,9 +29,18 @@ namespace MvcTodo.Services
             return _db.Todos.Find(id);
         }
 
-        public void update(Todo todo)
+        public void Update(Todo todo)
         {
             _db.Update(todo);
+        }
+
+        public IEnumerable<SelectListItem> PrioritySelectListItems()
+        {
+            return _db.Todos.Select(x => new SelectListItem
+            {
+                Value = x.Priority.ToString(),
+                Text = x.PrioratyText
+            });
         }
     }
 }

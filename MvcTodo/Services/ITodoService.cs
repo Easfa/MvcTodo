@@ -1,4 +1,5 @@
-﻿using MvcTodo.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using MvcTodo.Models;
 using System.Collections.Generic;
 
 namespace MvcTodo.Services
@@ -14,6 +15,8 @@ namespace MvcTodo.Services
         //Add
         void Add(Todo todo);
         //Update
-        void update (Todo todo);
+        void Update (Todo todo);
+        //Prioraty SelectListItem
+        public IEnumerable<SelectListItem> PrioritySelectListItems();
     }
 }

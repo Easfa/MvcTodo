@@ -1,5 +1,51 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model MvcTodo.Models.ViewModels.TodoVM
+
+<form method="post" asp-action="AddOrUpdate">
+    <div class="p-3 col-12">
+        <input type="hidden" asp-for="Todo.Id" />
+        <h2 class="text-black-50 pl-3">Add Todo</h2>
+        <div class="row col-6">
+            <div class="pb-3">
+                <label asp-for="Todo.TodoText" class="form-label"></label>
+                <input asp-for="Todo.TodoText" class="form-control" />
+                <span asp-validation-for="Todo.TodoText" class="text-danger"></span>
+            </div>
+            <div class="pb-3">
+                <label asp-for="Todo.Deadline" class="form-label"></label>
+                <input asp-for="Todo.Deadline" class="form-control" />
+                <span asp-validation-for="Todo.Deadline" class="text-danger"></span>
+            </div>
+            <div class="pb-3">
+                <label asp-for="Todo.Priority" class="form-label"></label>
+                <select asp-for="Todo.Priority" class="form-control" asp-items="@Model.PriorityDropDown">
+                    <option disabled selected>--- Select a Category ---</option>
+                </select>
+                <span asp-validation-for="Todo.Priority" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 text-start">
+                <a asp-action="Index" class="btn btn-outline-primary w-100 ">Back</a>
+            </div>
+            <div class="col-3 text-end">
+
+                @{
+                    if (Model.Todo.Id == 0)
+                    {
+                        <input type="submit" class="btn btn-info w-100" value="Create" />
+                    }
+                    else
+                    {
+                        <input type="submit" class="btn btn-info w-100" value="Update" />
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
 }
