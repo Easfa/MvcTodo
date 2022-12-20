@@ -48,5 +48,11 @@ namespace MvcTodo.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult Done(int id) 
+        {
+            _service.SetDone(id);
+            return RedirectToAction("Index");
+        }
     }
 }

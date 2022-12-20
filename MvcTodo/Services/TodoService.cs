@@ -12,6 +12,7 @@ namespace MvcTodo.Services
         public void Add(Todo todo)
         {
             _db.Add(todo);
+            _db.SaveChanges();
         }
 
         public IEnumerable<Todo> GetActiveTodos()
@@ -32,6 +33,7 @@ namespace MvcTodo.Services
         public void Update(Todo todo)
         {
             _db.Update(todo);
+            _db.SaveChanges();
         }
 
         public IEnumerable<SelectListItem> PrioritySelectListItems()
@@ -41,6 +43,11 @@ namespace MvcTodo.Services
                 Value = x.Priority.ToString(),
                 Text = x.PrioratyText
             });
+        }
+        public void SetDone(int id) 
+        {
+            _db.Todos.Find(id).IsComplete = true;
+            _db.SaveChanges();
         }
     }
 }
