@@ -10,7 +10,7 @@ namespace MvcTodo.Models
         [Required]
         public string TodoText { get; set; }
         [Required]
-        public DateTime Deadline { get; set; }
+        public DateTime Deadline { get; set; } = DateTime.Now;
         [Required]
         public bool IsComplete { get; set; }
         [Required]
