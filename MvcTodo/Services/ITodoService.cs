@@ -18,7 +18,10 @@ namespace MvcTodo.Services
         void Update (Todo todo);
         //Prioraty SelectListItem
         //IEnumerable<SelectListItem> PrioritySelectListItems();
-        
+
+        //Delete Cheers one
+        void DeleteCheers();
+
         //Todo done
         void SetDone(int id);
     }

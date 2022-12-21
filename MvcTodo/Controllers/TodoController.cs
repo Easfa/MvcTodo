@@ -43,7 +43,11 @@ namespace MvcTodo.Controllers
 
             return RedirectToAction("Index");
         }
-
+        public IActionResult DeleteCheers(int id)
+        {
+            _service.DeleteCheers();
+            return RedirectToAction("ShowAll");
+        }
         public IActionResult Done(int id) 
         {
             _service.SetDone(id);

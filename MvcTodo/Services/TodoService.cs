@@ -15,6 +15,12 @@ namespace MvcTodo.Services
             _db.SaveChanges();
         }
 
+        public void DeleteCheers() 
+        {
+            _db.RemoveRange(_db.Todos.Where(x => x.IsComplete == Todo.IsCompleteText.Cheers));
+            _db.SaveChanges();
+        }
+
         public IEnumerable<Todo> GetActiveTodos()
         {
             return _db.Todos.Where(x => x.IsComplete != Todo.IsCompleteText.Cheers);
