@@ -1,10 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MvcTodo.Models
 {
     public class Todo
     {
+        public enum PrioratyText 
+        { 
+            Relax,
+            Secondary,
+            Immediate
+        }
+        public enum IsCompleteText 
+        {
+            [Description("Cheers!!")]
+            Cheers,
+            [Description("Not Coplete Yet!!")]
+            NotCopleteYet
+        }
         [Key]
         public int Id { get; set; }
         [Required]
@@ -12,15 +26,14 @@ namespace MvcTodo.Models
         [Required]
         public DateTime Deadline { get; set; } = DateTime.Now;
         [Required]
-        public bool IsComplete { get; set; }
+        public IsCompleteText IsComplete { get; set; } = IsCompleteText.NotCopleteYet;
         [Required]
-        [Range(1, 3, ErrorMessage = "Select prioraty correct")]
-        public byte Priority { get; set; } = 1;
+        public PrioratyText Priority { get; set; } = PrioratyText.Relax;
 
-        [NotMapped]
-        public string PrioratyText { get { if (Priority == 1) return "Relax"; else if (Priority == 2) return "Secondary"; return "Immediate"; }}
+        //[NotMapped]
+        //public string PrioratyText { get { if (Priority == 1) return "Relax"; else if (Priority == 2) return "Secondary"; return "Immediate"; }}
 
-        [NotMapped]
-        public string CompleteText { get { if (IsComplete) return "Cheers!";  return "Not Coplete Yet!!"; } }
+        //[NotMapped]
+        //public string CompleteText { get { if (IsComplete) return "Cheers!";  return "Not Coplete Yet!!"; } }
     }
 }

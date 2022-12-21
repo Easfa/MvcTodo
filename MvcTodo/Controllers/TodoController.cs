@@ -19,18 +19,13 @@ namespace MvcTodo.Controllers
 
         public IActionResult AddOrUpdate(int id)
         {
-            TodoVM todovm = new TodoVM()
-            {
-                Todo = new Todo(),
-                PriorityDropDown = _service.PrioritySelectListItems()
-
-            };
+            var todo = new Todo();
             if (id == 0)
-                return View(todovm);
+                return View(todo);
             else
             {
-                todovm.Todo = _service.GetTodoById(id);
-                return View(todovm);
+                todo = _service.GetTodoById(id);
+                return View(todo);
             }
         }
         [HttpPost]

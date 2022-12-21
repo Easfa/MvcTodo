@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Todo>
+@using Humanizer
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -41,8 +42,8 @@
                 {
                     <tr class="align-middle">
                         <td width="20%">@todo.TodoText</td>
-                        <td width="20%">@todo.PrioratyText</td>
-                        <td width="20">@todo.Deadline</td>
+                        <td width="20%">@todo.Priority.ToString()</td>
+                        <td width="20">@TimeSpan.FromDays((todo.Deadline - DateTime.Now).TotalDays).Humanize()</td>
                         <td width="30%" class="">
                             <div class="w-100 btn-group" role="group">
                                 <a asp-controller="Todo" asp-action="AddOrUpdate" asp-route-id="@todo.Id" class="btn btn-outline-primary mx-2">Update</a>

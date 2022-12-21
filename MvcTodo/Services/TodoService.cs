@@ -17,7 +17,7 @@ namespace MvcTodo.Services
 
         public IEnumerable<Todo> GetActiveTodos()
         {
-            return _db.Todos.Where(x => x.IsComplete == false);
+            return _db.Todos.Where(x => x.IsComplete == Todo.IsCompleteText.NotCopleteYet);
         }
 
         public IEnumerable<Todo> GetAllTodos()
@@ -35,21 +35,9 @@ namespace MvcTodo.Services
             _db.Update(todo);
             _db.SaveChanges();
         }
-
-        public IEnumerable<SelectListItem> PrioritySelectListItems()
-        {
-            List<Todo> todo = new List<Todo>();
-            for(int i = 1; i <=3;i++) { todo.Add(new Todo()); todo[i - 1].Priority = (byte)i; }
-            return todo.Select(x => new SelectListItem
-            {
-                Value = x.Priority.ToString(),
-                Text = x.PrioratyText
-            });
-
-        }
         public void SetDone(int id) 
         {
-            _db.Todos.Find(id).IsComplete = true;
+            _db.Todos.Find(id).IsComplete = Todo.IsCompleteText.Cheers;
             _db.SaveChanges();
         }
     }
