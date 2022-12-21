@@ -14,7 +14,7 @@ namespace MvcTodo.Models
         }
         public enum IsCompleteText 
         {
-            [Description("Cheers!!")]
+            [Description("Cheers")]
             Cheers,
             [Display(Name = "Continued")]
             Continued,
