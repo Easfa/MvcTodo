@@ -44,7 +44,7 @@
                         <td width="20%">@todo.TodoText</td>
                         <td width="10%">@todo.Priority.ToString()</td>
                         <td width="20">@TimeSpan.FromDays((todo.Deadline - DateTime.Now).TotalDays).Humanize()</td>
-                        <td width="20%">@todo.IsComplete.ToString().Humanize(LetterCasing.Title)</td>
+                        <td width="20%">@todo.IsComplete.Humanize()</td>
                         <td width="30%" class="">
                             <div class="w-100 btn-group" role="group">
                                 <a asp-controller="Todo" asp-action="AddOrUpdate" asp-route-id="@todo.Id" class="btn btn-outline-primary mx-2">Update</a>
