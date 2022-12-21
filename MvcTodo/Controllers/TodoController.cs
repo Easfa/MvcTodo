@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MvcTodo.Models;
-using MvcTodo.Models.ViewModels;
 using MvcTodo.Services;
 
 namespace MvcTodo.Controllers
