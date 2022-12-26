@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Todo>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Category: Active Todo List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Todo" asp-action="AddOrUpdate" class="btn btn-primary">Create new Todo</a>
+        </div>
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table" style="width:100%">
+            <thead>
+                <tr class="align-middle text-primary">
+                    <th>
+                        Info
+                    </th>
+                    <th>
+                        Prioraty
+                    </th>
+                    <th>
+                        Deadline
+                    </th>
+                    <th>
+                        Is Complete
+                    </th>
+                    <th>
+
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var todo in Model)
+                {
+                    <tr class="align-middle">
+                        <td width="20%">@todo.TodoText</td>
+                        <td width="20%">@todo.Priority.ToString()</td>
+                        <td width="20%">@TimeSpan.FromDays((todo.Deadline - DateTime.Now).TotalDays).Humanize()</td>
+                        
+                        <td width="10%">@todo.IsComplete.Humanize()</td>
+                        <td width="30%" class="">
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-controller="Todo" asp-action="AddOrUpdate" asp-route-id="@todo.Id" class="btn btn-outline-primary mx-2">Update</a>
+                            </div>
+                        </td>
+                        <td width="10%" class="">
+                            <div class="w-100 btn-success" role="group">
+                                <a asp-controller="Todo" asp-action="DONE" asp-route-id="@todo.Id" class="btn btn-outline-success mx-2">DONE</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No items created yet</p>
+    }
+
+</div>

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MvcTodo.Models;
 
 namespace MvcTodo.Data
 {
@@ -7,5 +8,6 @@ namespace MvcTodo.Data
         public AppDbContext(DbContextOptions options): base(options) { }
 
         //DbSets Area
+        public DbSet<Todo> Todos { get; set; }
     }
 }

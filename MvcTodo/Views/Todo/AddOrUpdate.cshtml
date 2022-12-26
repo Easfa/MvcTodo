@@ -1,0 +1,61 @@
+﻿@model MvcTodo.Models.Todo
+<form method="post" asp-action="AddOrUpdate">
+    <div class="p-3 col-12">
+        <input type="hidden" asp-for="Id" />
+        <h2 class="text-black-50 pl-3">Add Todo</h2>
+        <div class="row col-6">
+            <div class="pb-3">
+                <label asp-for="TodoText" class="form-label"></label>
+                <input asp-for="TodoText" class="form-control" />
+                <span asp-validation-for="TodoText" class="text-danger"></span>
+            </div>
+            <div class="pb-3">
+                <label asp-for="Deadline" class="form-label"></label>
+                <input asp-for="Deadline" class="form-control" />
+                <span asp-validation-for="Deadline" class="text-danger"></span>
+            </div>
+            <div class="pb-3">
+                <label asp-for="Priority" class="form-label"></label>
+                <select asp-for="Priority" class="form-control"  asp-items="Html.GetEnumSelectList<Todo.PrioratyText>()">
+                    <option disabled selected>--- Select a Priority ---</option>
+                </select>
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+            @if(Model.Id != 0)
+            {
+                <div class="pb-3">
+                <label asp-for="Priority" class="form-label"></label>
+                <select asp-for="Priority" class="form-control"  asp-items="Html.GetEnumSelectList<Todo.IsCompleteText>()">
+                    <option disabled selected>--- Select a Complete ---</option>
+                </select>
+                <span asp-validation-for="Priority" class="text-danger"></span>
+                </div>
+            }
+            
+        </div>
+        <div class="row">
+            <div class="col-3 text-start">
+                <a asp-action="Index" class="btn btn-outline-primary w-100 ">Back</a>
+            </div>
+            <div class="col-3 text-end">
+
+                @{
+                    if (Model.Id == 0)
+                    {
+                        <input type="submit" class="btn btn-info w-100" value="Create" />
+                    }
+                    else
+                    {
+                        <input type="submit" class="btn btn-info w-100" value="Update" />
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
